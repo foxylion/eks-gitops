@@ -1,0 +1,21 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: ingress-nginx
+  namespace: kube-system
+spec:
+  releaseName: ingress-nginx
+  chart:
+    repository: https://hub.helm.sh/charts/stable
+    name: nginx-ingress
+    version: 1.33.5
+  values:
+    controller:
+      stats:
+        enabled: true
+      metrics:
+        enabled: true
+      podAnnotations:
+        "prometheus.io/scrape": true
+        "prometheus.io/port": 10254
