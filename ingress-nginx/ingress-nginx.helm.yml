@@ -16,6 +16,6 @@ spec:
         enabled: true
       metrics:
         enabled: true
-      podAnnotations:
-        "prometheus.io/scrape": true
-        "prometheus.io/port": 10254
+        serviceMonitor:
+          enabled: true
+          scrapeInterval: 10s
