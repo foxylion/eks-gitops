@@ -9,7 +9,7 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: prometheus-operator
-    version: 5.1.0
+    version: 8.11.2
   values:
     grafana:
       enabled: true
@@ -17,5 +17,5 @@ spec:
     nodeExporter:
       serviceMonitor:
         relabelings:
-        - sourceLabels: [__meta_kubernetes_pod_node_name]
-          targetLabel: instance
+          - sourceLabels: [__meta_kubernetes_pod_node_name]
+            targetLabel: instance
