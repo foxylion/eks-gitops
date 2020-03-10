@@ -1,4 +1,35 @@
 apiVersion: flagger.app/v1beta1
+kind: MetricTemplate
+metadata:
+  name: podinfo-errors
+  namespace: test
+spec:
+  provider:
+    type: prometheus
+    address: http://prometheus-operator-prometheus.monitoring:9090
+  query: |
+    sum(
+      rate(
+        nginx_ingress_controller_requests{
+          exported_namespace="{{ namespace }}",
+          ingress="{{ ingress }}",
+          status!~"5.*"
+        }[{{ interval }}]
+      )
+    ) 
+    / 
+    sum(
+      rate(
+        nginx_ingress_controller_requests{
+          exported_namespace="{{ namespace }}",
+          ingress="{{ ingress }}"
+        }[{{ interval }}]
+      )
+    ) 
+    * 100
+
+---
+apiVersion: flagger.app/v1beta1
 kind: Canary
 metadata:
   name: podinfo
@@ -41,12 +72,13 @@ spec:
     stepWeight: 5
     # NGINX Prometheus checks
     metrics:
-      - name: request-success-rate
-        # minimum req success rate (non 5xx responses)
-        # percentage (0-100)
+      - name: "errors"
+        templateRef:
+          name: podinfo-errors
+          namespace: test
         thresholdRange:
-          min: 99
-        interval: 1m
+          min: 1
+        interval: 30s
     # testing (optional)
     webhooks:
       - name: acceptance-test
