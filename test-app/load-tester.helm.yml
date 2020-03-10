@@ -1,7 +1,7 @@
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-  name: loadtester
+  name: flagger-loadtester
   namespace: test
 spec:
   releaseName: loadtester

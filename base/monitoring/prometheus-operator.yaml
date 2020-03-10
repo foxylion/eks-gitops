@@ -29,7 +29,7 @@ spec:
         enabled: true
         hosts:
           - alertmanager.k8s-test.jakob.soy
-    server:
+    prometheus:
       ingress:
         enabled: true
         hosts:
