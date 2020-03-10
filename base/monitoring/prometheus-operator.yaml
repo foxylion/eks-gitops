@@ -22,12 +22,15 @@ spec:
       defaultDashboardsEnabled: true
       ingress:
         enabled: true
-        hosts: grafana.k8s-test.jakob.soy
+        hosts:
+          - grafana.k8s-test.jakob.soy
     alertmanager:
       ingress:
         enabled: true
-        hosts: alertmanager.k8s-test.jakob.soy
+        hosts:
+          - alertmanager.k8s-test.jakob.soy
     server:
       ingress:
         enabled: true
-        hosts: prometheus.k8s-test.jakob.soy
+        hosts:
+          - prometheus.k8s-test.jakob.soy
