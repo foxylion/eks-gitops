@@ -30,6 +30,8 @@ spec:
         hosts:
           - alertmanager.k8s-test.jakob.soy
     prometheus:
+      prometheusSpec:
+        serviceMonitorSelector: {}
       ingress:
         enabled: true
         hosts:
