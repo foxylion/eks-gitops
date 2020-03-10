@@ -7,8 +7,8 @@ metadata:
 spec:
   releaseName: ingress-nginx
   chart:
-    repository: https://hub.helm.sh/charts/stable
-    name: nginx-ingress
+    repository: https://hub.helm.sh/charts
+    name: stable/nginx-ingress
     version: 1.33.5
   values:
     controller:
