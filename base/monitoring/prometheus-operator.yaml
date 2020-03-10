@@ -32,6 +32,7 @@ spec:
     prometheus:
       prometheusSpec:
         serviceMonitorSelector: {}
+        serviceMonitorSelectorNilUsesHelmValues: false
       ingress:
         enabled: true
         hosts:
