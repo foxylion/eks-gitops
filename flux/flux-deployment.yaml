@@ -150,7 +150,7 @@ spec:
             - --git-user=Flux
             - --git-email=gitops@test.tld
 
-            - --git-pollinterval=1m
+            - --git-poll-interval=1m
             - --sync-timeout=1m
 
             # Include these two to enable git commit signing
