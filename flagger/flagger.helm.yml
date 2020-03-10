@@ -1,0 +1,15 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: flagger
+  namespace: flagger
+spec:
+  releaseName: flagger
+  chart:
+    repository: https://flagger.app
+    name: flagger
+    version: 8.11.2
+  values:
+    prometheus:
+      install: false
+    metricsServer: http://prometheus-operator-prometheus.monitoring:9090
