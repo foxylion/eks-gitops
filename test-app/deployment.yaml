@@ -50,6 +50,8 @@ spec:
           env:
             - name: PODINFO_UI_COLOR
               value: "#34577c"
+            - name: TEST
+              value: a
           livenessProbe:
             exec:
               command:
