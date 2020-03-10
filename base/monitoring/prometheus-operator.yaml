@@ -11,11 +11,23 @@ spec:
     name: prometheus-operator
     version: 8.11.2
   values:
-    grafana:
-      enabled: true
-      defaultDashboardsEnabled: true
     nodeExporter:
       serviceMonitor:
         relabelings:
           - sourceLabels: [__meta_kubernetes_pod_node_name]
             targetLabel: instance
+
+    grafana:
+      enabled: true
+      defaultDashboardsEnabled: true
+      ingress:
+        enabled: true
+        hosts: grafana.k8s-test.jakob.soy
+    alertmanager:
+      ingress:
+        enabled: true
+        hosts: alertmanager.k8s-test.jakob.soy
+    server:
+      ingress:
+        enabled: true
+        hosts: prometheus.k8s-test.jakob.soy
