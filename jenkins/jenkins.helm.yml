@@ -13,6 +13,11 @@ spec:
   values:
     master:
       adminPassword: jenkinsAdmin
+      installPlugins:
+        - blueocean
       ingress:
         enabled: true
         hostName: jenkins.k8s-test.jakob.soy
+      sidecars:
+        configAutoReload:
+          enabled: true
