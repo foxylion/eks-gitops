@@ -21,3 +21,129 @@ spec:
       sidecars:
         configAutoReload:
           enabled: true
+      jobs:
+        test-job-1: |
+          <?xml version='1.1' encoding='UTF-8'?>
+          <flow-definition plugin="workflow-job@2.36">
+            <actions>
+              <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@1.6.0"/>
+              <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.6.0">
+                <jobProperties/>
+                <triggers/>
+                <parameters/>
+                <options/>
+              </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+            </actions>
+            <description></description>
+            <keepDependencies>false</keepDependencies>
+            <properties/>
+            <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.80">
+              <script>pipeline {
+              agent none
+              stages {
+                  stage(&apos;Build&apos;) {
+                      parallel {
+                          stage(&apos;windows&apos;) {
+                              agent any
+                              steps {
+                                  echo &quot;Running windows build...&quot;
+                                  sh &apos;sleep 15&apos;
+                                  echo &quot;Success!&quot;
+                              }
+                          }
+                          stage(&apos;linux&apos;) {
+                              agent any
+                              steps {
+                                  echo &quot;Running linux build...&quot;
+                                  sh &apos;sleep 10&apos;
+                                  echo &quot;Success!&quot;
+                              }
+                          }
+                      }
+                  }
+                  stage(&apos;Test&apos;) {
+                      parallel {
+                          
+                          stage(&apos;windows 10&apos;) {
+                              agent any
+                              steps {
+                                  echo &quot;Test on windows 10...&quot;
+                                  sh &apos;sleep 5&apos;
+                                  echo &quot;Success!&quot;
+                              }
+                          }
+                          stage(&apos;windows 8&apos;) {
+                              agent any
+                              steps {
+                                  echo &quot;Test on windows 8...&quot;
+                                  sh &apos;sleep 5&apos;
+                                  echo &quot;Success!&quot;
+                              }
+                          }
+                          stage(&apos;windows 7&apos;) {
+                              agent any
+                              steps {
+                                  echo &quot;Test on windows 7...&quot;
+                                  sh &apos;sleep 5&apos;
+                                  echo &quot;Success!&quot;
+                              }
+                          }
+                          stage(&apos;ubuntu&apos;) {
+                              agent any
+                              steps {
+                                  echo &quot;Test on ubuntu...&quot;
+                                  sh &apos;sleep 5&apos;
+                                  echo &quot;Success!&quot;
+                              }
+                          }
+                          stage(&apos;debian&apos;) {
+                              agent any
+                              steps {
+                                  echo &quot;Test on ubuntu...&quot;
+                                  sh &apos;sleep 5&apos;
+                                  echo &quot;Success!&quot;
+                              }
+                          }
+                      }
+                  }
+              }
+          }</script>
+              <sandbox>true</sandbox>
+            </definition>
+            <triggers/>
+            <disabled>false</disabled>
+          </flow-definition>
+        test-job-2: |
+          <?xml version='1.1' encoding='UTF-8'?>
+          <flow-definition plugin="workflow-job@2.36">
+            <actions>
+              <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@1.6.0"/>
+              <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.6.0">
+                <jobProperties/>
+                <triggers/>
+                <parameters/>
+                <options/>
+              </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+            </actions>
+            <description></description>
+            <keepDependencies>false</keepDependencies>
+            <properties/>
+            <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.80">
+              <script>pipeline {
+              agent none
+              stages {
+                  stage(&apos;Build&apos;) {
+                      agent any
+                      steps {
+                          echo &quot;Running windows build...&quot;
+                          sh &apos;sleep 15&apos;
+                          echo &quot;Success!&quot;
+                      }
+                  }
+              }
+          }</script>
+              <sandbox>true</sandbox>
+            </definition>
+            <triggers/>
+            <disabled>false</disabled>
+          </flow-definition>
