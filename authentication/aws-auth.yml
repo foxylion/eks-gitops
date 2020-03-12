@@ -14,5 +14,7 @@ data:
       - custom:readonly
       rolearn: arn:aws:iam::299619554958:role/Developer
       username: custom:developer
+      groups:
+      - custom:developer
   mapUsers: |
     []
