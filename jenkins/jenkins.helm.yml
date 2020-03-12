@@ -12,7 +12,7 @@ spec:
     version: 1.9.21
   values:
     master:
-      password: jenkinsAdmin
+      adminPassword: jenkinsAdmin
       ingress:
         enabled: true
         hostName: jenkins.k8s-test.jakob.soy
