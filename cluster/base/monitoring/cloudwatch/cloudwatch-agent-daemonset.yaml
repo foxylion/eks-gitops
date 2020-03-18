@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: cloudwatch-agent
-  namespace: amazon-cloudwatch
+  namespace: monitoring
 spec:
   selector:
     matchLabels:
@@ -23,7 +23,7 @@ spec:
           #    protocol: UDP
           resources:
             limits:
-              cpu:  200m
+              cpu: 200m
               memory: 200Mi
             requests:
               cpu: 200m

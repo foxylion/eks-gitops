@@ -145,10 +145,10 @@ spec:
             - --git-branch=master
             # Include this if you want to restrict the manifests considered by flux
             # to those under the following relative paths in the git repository
-            # - --git-path=subdir1,subdir2
+            - --git-path=cluster
             - --git-label=flux
             - --git-user=Flux
-            - --git-email=gitops@test.tld
+            - --git-email=flux@example.tld
 
             - --git-poll-interval=1m
             - --sync-timeout=1m

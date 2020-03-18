@@ -17,4 +17,4 @@ data:
 kind: ConfigMap
 metadata:
   name: cluster-info
-  namespace: amazon-cloudwatch
+  namespace: monitoring

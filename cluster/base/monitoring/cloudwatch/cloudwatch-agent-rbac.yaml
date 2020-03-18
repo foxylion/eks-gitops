@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: cloudwatch-agent
-  namespace: amazon-cloudwatch
+  namespace: monitoring
 
 ---
 kind: ClusterRole
@@ -29,7 +29,7 @@ rules:
   - apiGroups: [""]
     resources: ["configmaps"]
     resourceNames: ["cwagent-clusterleader"]
-    verbs: ["get","update"]
+    verbs: ["get", "update"]
 
 ---
 kind: ClusterRoleBinding
@@ -39,7 +39,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: cloudwatch-agent
-    namespace: amazon-cloudwatch
+    namespace: monitoring
 roleRef:
   kind: ClusterRole
   name: cloudwatch-agent-role

@@ -18,4 +18,4 @@ data:
 kind: ConfigMap
 metadata:
   name: cwagentconfig
-  namespace: amazon-cloudwatch
+  namespace: monitoring

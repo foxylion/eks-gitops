@@ -1,6 +1,6 @@
 # EKS with git-ops
 
-## (Intitally) Manual Process
+## Initial experimentations
 
 ``` bash
 eksctl create cluster --name test --version 1.14 --region eu-central-1 --nodegroup-name default-workers \
@@ -16,14 +16,13 @@ eksctl enable profile app-dev \
   --cluster test --region eu-central-1
 ```
 
-## With config files
+## The right way, with config files
 
 ``` bash
-eksctl create cluster -f cluster.yml
-eksctl update cluster -f cluster.yml
+eksctl create cluster -f eks-config/cluster.yml
 ```
 
-### Connect to flux
+### Deploy flux
 
 Assuming you have a new, empty EKS cluster (see also [here](https://docs.fluxcd.io/en/1.18.0/tutorials/get-started.html))
 
@@ -31,7 +30,7 @@ Assuming you have a new, empty EKS cluster (see also [here](https://docs.fluxcd.
 # Deploy flux
 kubectl create ns flux
 fluxctl install --git-url git@github.com:foxylion/eks-gitops.git --git-email flux@example.tld \
-   --namespace flux | kubectl apply -f -
+   --git-path cluster --namespace flux | kubectl apply -f -
 
 # Wait for successful deployment
 kubectl -n flux rollout status deployment/flux
@@ -44,7 +43,8 @@ fluxctl identity --k8s-fwd-ns flux
 
 ### Update nodegroups
 
-Change the name of modified nodegroups, they will be created, afterwards delete the old nodgroups
+* Change the name of modified nodegroups, modified nodegroups will then be created as a new nodegroup
+* Afterwards we will delete all stale nodegroups, pods will be moved to the new nodegroups
 
 ``` bash
 eksctl create nodegroup -f cluster.yml
@@ -53,7 +53,7 @@ eksctl delete nodegroup -f cluster.yml --only-missing
 
 ## Current issues
 
-* Managed node groups in private subnets are not supported by eksctl - https://github.com/weaveworks/eksctl/issues/1575
+* Managed node groups in private subnets are currently not supported by eksctl - https://github.com/weaveworks/eksctl/issues/1575
 
 ## Helm templating
 

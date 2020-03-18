@@ -3,7 +3,7 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
   name: fluentd-cloudwatch
-  namespace: amazon-cloudwatch
+  namespace: monitoring
   labels:
     k8s-app: fluentd-cloudwatch
 spec:
@@ -22,7 +22,7 @@ spec:
       initContainers:
         - name: copy-fluentd-config
           image: busybox
-          command: ['sh', '-c', 'cp /config-volume/..data/* /fluentd/etc']
+          command: ["sh", "-c", "cp /config-volume/..data/* /fluentd/etc"]
           volumeMounts:
             - name: config-volume
               mountPath: /config-volume
@@ -30,7 +30,7 @@ spec:
               mountPath: /fluentd/etc
         - name: update-log-driver
           image: busybox
-          command: ['sh','-c','']
+          command: ["sh", "-c", ""]
       containers:
         - name: fluentd-cloudwatch
           image: fluent/fluentd-kubernetes-daemonset:v1.3.3-debian-cloudwatch-1.4
