@@ -1,0 +1,16 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: inject
+  namespace: appmesh-system
+spec:
+  releaseName: inject
+  chart:
+    repository: https://aws.github.io/eks-charts
+    name: appmesh-inject
+    version: 0.11.0
+  values:
+    mesh:
+      create: true
+      name: eks-test
