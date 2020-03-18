@@ -8,7 +8,7 @@ metadata:
 managedNodeGroups:
   - name: default-workers-v3
     instanceType: t3.medium
-    desiredCapacity: 3
+    desiredCapacity: 5
     iam:
       withAddonPolicies:
         imageBuilder: true
