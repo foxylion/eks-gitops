@@ -42,10 +42,18 @@ fluxctl identity --k8s-fwd-ns flux
 # https://github.com/foxylion/eks-gitops/settings/keys
 ```
 
-### Grant K8s permissions for IAM roles
+### Grant IAM roles permission to the k8s API
 
 * Under `cluster/base/authentication/` you'll find roles defined in Kubernetes
 * Apply a modified version of `eks-config/aws-auth.yml` to grant IAM roles the permission for k8s roles
+
+### Assign a pod an IAM role
+
+* Add the IAM role to `eks-config/custer.yml` 
+
+``` 
+eksctl create iamserviceaccount -f eks-config/cluster.yml --approve
+```
 
 ### Update nodegroups
 
@@ -70,4 +78,24 @@ helm template -i flagger flagger/flagger --namespace flagger --set metricsServer
 
 * By default the helm operator only selects ServiceMonitors with the label "Release: prometheus-operator". Use `prometheus.prometheusSpec.serviceMonitorSelector: {}` and `serviceMonitorSelectorNilUsesHelmValues: false` to select all ServiceMonitors
 * Ingress Nginx controller needs to expose its metrics via a ServiceMonitor
+
+## Things that could/should be improved
+
+* Reduce the IAM policies attached to the nodes, use IAM roles attached to serviceaccounts instead (e.g.for cluster autoscaler, ... )
+
+## Examples
+
+### Run a pod with a service account that has a IAM role assigend
+
+``` 
+kubectl run -it --rm -n kube-system --image ubuntu:18.04 --serviceaccount external-dns shell -- /bin/bash
+apt update
+apt install curl unzip -y
+curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
+unzip awscliv2.zip
+./aws/install
+
+export AWS_PAGER=""
+aws sts get-caller-identity
+```
 
