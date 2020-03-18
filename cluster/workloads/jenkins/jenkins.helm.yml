@@ -17,7 +17,7 @@ spec:
         - blueocean
       ingress:
         enabled: true
-        hostName: jenkins.k8s-test.jakob.soy
+        hostName: jenkins.k8s.aws-test.jakob.soy
       sidecars:
         configAutoReload:
           enabled: true
