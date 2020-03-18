@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: color
+  namespace: appmesh-demo
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: color.k8s.aws-test.jakob.soy
+      http:
+        paths:
+          - backend:
+              serviceName: colorgateway
+              servicePort: 9080

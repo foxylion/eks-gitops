@@ -13,4 +13,4 @@ spec:
   values:
     mesh:
       create: true
-      name: eks-test
+      name: color-mesh

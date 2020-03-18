@@ -99,3 +99,7 @@ export AWS_PAGER=""
 aws sts get-caller-identity
 ```
 
+### AppMesh example
+
+https://docs.aws.amazon.com/eks/latest/userguide/deploy-mesh-connected-service.html#deploy-sample-application
+
