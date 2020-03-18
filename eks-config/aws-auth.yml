@@ -8,7 +8,7 @@ data:
     - groups:
       - system:bootstrappers
       - system:nodes
-      rolearn: arn:aws:iam::299619554958:role/eksctl-test-nodegroup-default-wor-NodeInstanceRole-Q000IGTFT5U4
+      rolearn: arn:aws:iam::299619554958:role/eksctl-test-nodegroup-default-wor-NodeInstanceRole-1I3N3EZIXJ6EV
       username: system:node:{{EC2PrivateDNSName}}
     - groups:
       - custom:readonly

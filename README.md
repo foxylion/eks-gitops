@@ -33,12 +33,13 @@ fluxctl install --git-url git@github.com:foxylion/eks-gitops.git --git-email flu
    --git-path cluster --namespace flux | kubectl apply -f -
 
 # Wait for successful deployment
-kubectl -n flux rollout status deployment/flux
+kubectl -n flux rollout status -w deployment/flux
 
 # Grant flux access to the git repository
 fluxctl identity --k8s-fwd-ns flux
 
 # Add key to github repository (with write access)
+# https://github.com/foxylion/eks-gitops/settings/keys
 ```
 
 ### Update nodegroups
@@ -54,6 +55,7 @@ eksctl delete nodegroup -f cluster.yml --only-missing
 ## Current issues
 
 * Managed node groups in private subnets are currently not supported by eksctl - https://github.com/weaveworks/eksctl/issues/1575
+* Do not mange the `aws-auth` config-map in the `kube-system` namespace through flux, or ensure that the role arn is correct (will differ between each cluster created, when wrong the cluster will go down)
 
 ## Helm templating
 
