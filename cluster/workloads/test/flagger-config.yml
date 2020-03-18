@@ -92,4 +92,4 @@ spec:
         url: http://flagger-loadtester.test/
         timeout: 5s
         metadata:
-          cmd: "hey -z 1m -q 10 -c 2 http://testapp.k8s-test.jakob.soy/"
+          cmd: "hey -z 1m -q 10 -c 2 http://test.k8s.aws-test.jakob.soy/"
