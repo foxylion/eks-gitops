@@ -42,6 +42,11 @@ fluxctl identity --k8s-fwd-ns flux
 # https://github.com/foxylion/eks-gitops/settings/keys
 ```
 
+### Grant K8s permissions for IAM roles
+
+* Under `cluster/base/authentication/` you'll find roles defined in Kubernetes
+* Apply a modified version of `eks-config/aws-auth.yml` to grant IAM roles the permission for k8s roles
+
 ### Update nodegroups
 
 * Change the name of modified nodegroups, modified nodegroups will then be created as a new nodegroup

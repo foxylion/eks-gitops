@@ -7,40 +7,19 @@ metadata:
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-  name: podinfo
+  name: demo
   namespace: demo
 spec:
-  releaseName: podinfo
+  releaseName: demo
   chart:
     git: https://github.com/stefanprodan/podinfo
     ref: v3.x
     path: charts/podinfo
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: demo
-  namespace: demo
-spec:
-  selector:
-    app: demo
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 9898
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: demo
-  namespace: demo
-  annotations:
-    kubernetes.io/ingress.class: nginx
-spec:
-  rules:
-    - host: demo.k8s.aws-test.jakob.soy
-      http:
-        paths:
-          - backend:
-              serviceName: demo
-              servicePort: 80
+  values:
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+      hosts:
+        - demo.k8s.aws-test.jakob.soy
+      path: /

@@ -8,11 +8,11 @@ data:
     - groups:
       - system:bootstrappers
       - system:nodes
-      rolearn: arn:aws:iam::299619554958:role/eksctl-test-nodegroup-default-wor-NodeInstanceRole-1I3N3EZIXJ6EV
+      rolearn: arn:aws:iam::XXXXXXXX:role/eksctl-XXXXXXXXXXXXX
       username: system:node:{{EC2PrivateDNSName}}
     - groups:
       - custom:readonly
-      rolearn: arn:aws:iam::299619554958:role/Developer
+      rolearn: arn:aws:iam::XXXXXXXX:role/Developer
       username: custom:developer
       groups:
       - custom:developer
